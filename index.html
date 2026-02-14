@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shannon gwapa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-image: url('https://i.pinimg.com/736x/e5/72/38/e57238f1e0270f9f656e6e023b29501a.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .page {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .page.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .title-text {
+      font-family: 'Pacifico', cursive;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .floating-heart {
+      position: fixed;
+      font-size: 2.5rem;
+      animation: floatUp 6s linear;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .sparkle {
+      position: fixed;
+      font-size: 1.5rem;
+      animation: sparkleAnim 3s ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes sparkleAnim {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    .cursor-heart {
+      position: fixed;
+      font-size: 1.5rem;
+      pointer-events: none;
+      animation: cursorFloat 2s ease-out forwards;
+      z-index: 1;
+    }
+
+    @keyframes cursorFloat {
+      to {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+    }
+
+    .header-text {
+      font-family: 'Pacifico', cursive;
+      text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.3);
+    }
+
+    .breathing {
+      animation: breathe 3s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 182, 193, 0.6); }
+      50% { box-shadow: 0 0 40px rgba(255, 182, 193, 0.9); }
+    }
+
+    .image-container {
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+      background: transparent;
+      backdrop-filter: none;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      border: none;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .transition-gif {
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    .float-emoji {
+      position: fixed;
+      font-size: 2.5rem;
+      pointer-events: none;
+      animation: floatUpEmoji 4s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes floatUpEmoji {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-500px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .move-away-btn {
+      transition: all 0.3s ease;
+    }
+
+    .btn-shadow {
+      box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-shadow:hover {
+      box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .header-text {
+        font-size: 2.5rem !important;
+      }
+      .image-container {
+        max-width: 300px;
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="/music/IMG_6659.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Page 1: Welcome -->
+  <div id="page1" class="page active flex-col items-center justify-center text-center max-w-2xl w-full">
+    
+    <div class="bg-white/70 backdrop-blur-md rounded-3xl p-8 mb-8 shadow-xl border-2 border-pink-200/50">
+      <p class="text-xl md:text-2xl text-rose-600 font-semibold mb-4">
+      HAPPY VALENTINE'S DAY BFF HAHAHA
+      </p>
+      <p class="text-lg text-gray-700 mb-2">
+        may mga pamangkot na d sa sulod kag sabta tadlong pls
+      </p>
+      <p class="text-md text-gray-600 italic">
+        (pero ik nga kupal ka so naka two steps ahead na q hehe)
+      </p>
+    </div>
+
+    <!-- kuring -->
+    <div class="image-container mb-8 breathing pulse-glow" style="box-flex-group: white
+    ;">
+      <img src="/img/kuring ni.png"  class="placeholder-img">
+    </div>
+
+    <button onclick="nextPage(2)" class="bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:from-pink-500 hover:via-pink-600 hover:to-pink-700 text-white px-16 py-6 rounded-full text-3xl font-bold shadow-2xl transition transform hover:scale-110 animate-bounce btn-shadow">
+      Enter
+    </button>
+  </div>
+
+  <!-- Q1 na d -->
+  <div id="page2" class="page flex-col items-center justify-center text-center max-w-2xl w-full">
+    <h1 class="header-text text-4xl md:text-5xl text-rose-600 mb-8">
+      Quick question 101 hahaha... 
+    </h1>
+
+    <div class="bg-white/70 backdrop-blur-md rounded-3xl p-8 mb-8 shadow-xl border-2 border-pink-200/50">
+      <p class="text-2xl md:text-3xl text-rose-600 font-bold">
+        samok or OA na ko kis a mag interact simo?
+      </p>
+      <p class="text-lg text-gray-700">
+        (okay lg if oo imo e click promise)
+      </p>
+    </div>
+
+    <!-- kuring for q1-->
+    <div class="image-container mb-8 breathing pulse-glow">
+      <img src="/img/sad.gif"  class="placeholder-img">
+    </div>
+
+    <!-- Buttons -->
+    <div class="relative w-full max-w-md h-32 flex items-center justify-center gap-4">
+      <button id="yesBtn2" class="bg-gradient-to-r from-red-400 to-red-500 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all btn-shadow" style="z-index: 10;">
+        Oo
+      </button>
+      
+      <button id="sometimesBtn2" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all btn-shadow" style="z-index: 10;">
+        Kis a
+      </button>
+
+      <button id="noBtn2" class="bg-gradient-to-r from-green-400 to-green-600 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all duration-300 btn-shadow" style="z-index: 5;">
+        Nd
+      </button>
+    </div>
+  </div>
+
+  <!-- Transition after Page 2 -->
+  <div id="transition1" class="page flex-col items-center justify-center text-center max-w-2xl w-full">
+    <img src="img/kilig1.gif"  class="transition-gif breathing">
+  </div>
+
+  <!-- Page 3: Future plans? -->
+  <div id="page3" class="page flex-col items-center justify-center text-center max-w-2xl w-full">
+    <h1 class="header-text text-4xl md:text-5xl text-rose-600 mb-8">
+      One more hahahahhaha
+    </h1>
+
+    <div class="bg-white/70 backdrop-blur-md rounded-3xl p-8 mb-8 shadow-xl border-2 border-pink-200/50">
+      <p class="text-2xl md:text-3xl text-rose-600 font-bold mb-2">
+        Do you see something long-term between us?
+      </p>
+      <p class="text-lg text-gray-700">
+        (mas bff premium or meski illegal tandem nlg hahahaha)
+      </p>
+    </div>
+
+    <!-- Image Container -->
+    <div class="image-container mb-8 breathing pulse-glow">
+      <img src="/img/hmm.jpg"  class="placeholder-img">
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap gap-4 justify-center items-center">
+      <button id="yesBtn3" class="bg-gradient-to-r from-pink-400 to-pink-600 hover:from-pink-500 hover:to-pink-700 text-white px-16 py-6 rounded-full text-3xl font-bold shadow-2xl transition transform hover:scale-110 animate-pulse btn-shadow">
+        Yes
+      </button>
+      
+      <button id="maybeBtn3" class="move-away-btn bg-gradient-to-r from-purple-400 to-purple-600 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg btn-shadow">
+        Maybe
+      </button>
+      
+      <button id="noBtn3" class="move-away-btn bg-gradient-to-r from-gray-400 to-gray-600 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg btn-shadow">
+        No
+      </button>
+    </div>
+  </div>
+
+  <!-- Transition after Page 3 -->
+  <div id="transition2" class="page flex-col items-center justify-center text-center max-w-2xl w-full">
+    <img src="/img/kilig2.jpg"  class="transition-gif breathing">
+  </div>
+
+  <!-- Page 4: March hangout -->
+  <div id="page4" class="page flex-col items-center justify-center text-center max-w-2xl w-full">
+    <h1 class="header-text text-4xl md:text-5xl text-rose-600 mb-8">
+      Ari last question
+    </h1>
+
+    <div class="bg-white/70 backdrop-blur-md rounded-3xl p-8 mb-8 shadow-xl border-2 border-pink-200/50">
+      <p class="text-2xl md:text-3xl text-rose-600 font-bold mb-4">
+        Madayon to tuod imo kadto d sa bcd?
+      </p>
+      <p class="text-xl text-pink-500 mb-2">
+        okay lg f sa march nlg or san o mas convenient both side instead this feb? hahaha overrated nmn b feb dapat mas unique hehe
+      </p>
+      <p class="text-lg text-gray-700 italic">
+        (broke asf so ipon us janay hahahahaahah)
+      </p>
+    </div>
+
+    <!-- Image Container -->
+    <div class="image-container mb-8 breathing pulse-glow">
+      <img src="/img/yes.gif"  class="placeholder-img">
+    </div>
+
+    <!-- Three Yes Buttons -->
+    <div class="flex flex-wrap gap-4 justify-center items-center">
+      <button onclick="showFinal()" class="bg-gradient-to-r from-pink-400 to-pink-600 hover:from-pink-500 hover:to-pink-700 text-white px-12 py-5 rounded-full text-2xl font-bold shadow-2xl transition transform hover:scale-110 btn-shadow">
+        Yes
+      </button>
+      
+      <button onclick="showFinal()" class="bg-gradient-to-r from-rose-400 to-rose-600 hover:from-rose-500 hover:to-rose-700 text-white px-12 py-5 rounded-full text-2xl font-bold shadow-2xl transition transform hover:scale-110 btn-shadow">
+        Sure
+      </button>
+      
+      <button onclick="showFinal()" class="bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white px-12 py-5 rounded-full text-2xl font-bold shadow-2xl transition transform hover:scale-110 btn-shadow">
+        Okay
+      </button>
+    </div>
+  </div>
+
+  <!-- Final Page: Success! -->
+  <div id="finalPage" class="page flex-col items-center justify-center text-center max-w-2xl w-full">
+    <div class="bg-white/80 backdrop-blur-lg rounded-3xl p-6 shadow-2xl border-4 border-pink-300/60">
+      <h1 class="text-3xl md:text-4xl font-bold text-rose-600 mb-4 animate-bounce header-text">
+        yiy yiy yiy
+      </h1>
+      
+      <p class="text-xl text-pink-600 mb-4 font-semibold">
+        tani nd na pasalig uu
+      </p>
+
+      <!-- Success GIF Container -->
+      <div class="w-full max-w-sm mx-auto mb-4 rounded-2xl overflow-hidden">
+        <img src="/img/lastna.gif" class="w-full h-auto">
+      </div>
+
+      <p class="text-base text-gray-600 italic mb-4">
+        E click lg ni ang "liwat" f may gusto ka islan simo mga sabat hehe
+      </p>
+
+      <button onclick="location.reload()" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full hover:from-pink-600 hover:to-purple-600 shadow-lg transform hover:scale-105 transition text-lg font-bold btn-shadow">
+        Liwat
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Music control
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.5;
+
+    // Try to play music on load
+    window.addEventListener('load', () => {
+      bgMusic.play().catch(() => {
+        console.log('Autoplay blocked, will play on first interaction');
+      });
+    });
+
+    // Play music on first click
+    document.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().catch(error => console.log('Music play failed:', error));
+      }
+    }, { once: true });
+
+    // Floating hearts - MORE FREQUENT
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      // More red hearts!
+      heart.innerHTML = ['❤️', '❤️', '❤️', '💖', '💕', '💘'][Math.floor(Math.random() * 6)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDelay = Math.random() * 1 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    // Sparkles
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.innerHTML = '✨';
+      sparkle.style.left = Math.random() * 100 + '%';
+      sparkle.style.top = Math.random() * 100 + '%';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 3000);
+    }
+
+    // Cursor hearts - SPAM RED HEARTS!!!
+    document.addEventListener('mousemove', (e) => {
+      // Much higher probability - create hearts on almost every mouse move!
+      if (Math.random() < 0.3) {
+        const heart = document.createElement('div');
+        heart.className = 'cursor-heart';
+        // MOSTLY RED HEARTS!
+        heart.innerHTML = ['❤️', '❤️', '❤️', '❤️', '💖', '💕'][Math.floor(Math.random() * 6)];
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+      }
+    });
+
+    // Start animations - MORE FREQUENT!
+    setInterval(createFloatingHeart, 300); // Much faster!
+    setInterval(createSparkle, 1500);
+
+    // Page navigation
+    function nextPage(pageNum) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // Handle both number (page2, page3) and string (transition1, transition2) IDs
+      const pageId = typeof pageNum === 'number' ? 'page' + pageNum : pageNum;
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    // PAGE 2: Growing No Button Logic
+    let noBtn2Scale = 1;
+    const yesBtn2 = document.getElementById('yesBtn2');
+    const sometimesBtn2 = document.getElementById('sometimesBtn2');
+    const noBtn2 = document.getElementById('noBtn2');
+
+    function growNoButton() {
+      noBtn2Scale += 0.4;
+      noBtn2.style.transform = `scale(${noBtn2Scale})`;
+      noBtn2.style.zIndex = '20';
+      
+      // Check if it's gotten really big
+      if (noBtn2Scale > 3) {
+        noBtn2.style.position = 'fixed';
+        noBtn2.style.left = '50%';
+        noBtn2.style.top = '50%';
+        noBtn2.style.transform = `translate(-50%, -50%) scale(${noBtn2Scale})`;
+      }
+    }
+
+    // Only grow on CLICK, not hover
+    yesBtn2.addEventListener('click', (e) => {
+      e.preventDefault();
+      growNoButton();
+    });
+    
+    sometimesBtn2.addEventListener('click', (e) => {
+      e.preventDefault();
+      growNoButton();
+    });
+
+    noBtn2.addEventListener('click', () => {
+      // Show transition first
+      nextPage('transition1');
+      
+      // After 1.5 seconds, go to page 3
+      setTimeout(() => {
+        nextPage(3);
+      }, 2500);
+      
+      // Reset for if they come back
+      noBtn2Scale = 1;
+      noBtn2.style.transform = 'scale(1)';
+      noBtn2.style.position = 'relative';
+      noBtn2.style.zIndex = '5';
+    });
+
+    // PAGE 3: Running Buttons Logic
+    const maybeBtn3 = document.getElementById('maybeBtn3');
+    const noBtn3 = document.getElementById('noBtn3');
+    const yesBtn3 = document.getElementById('yesBtn3');
+
+    function moveButtonAway(btn) {
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
+      const btnW = btn.offsetWidth;
+      const btnH = btn.offsetHeight;
+
+      let newX = Math.random() * (screenW - btnW - 40) + 20;
+      let newY = Math.random() * (screenH - btnH - 40) + 20;
+
+      btn.style.position = 'fixed';
+      btn.style.left = `${newX}px`;
+      btn.style.top = `${newY}px`;
+      btn.style.zIndex = '30';
+    }
+
+    maybeBtn3.addEventListener('mouseenter', () => moveButtonAway(maybeBtn3));
+    maybeBtn3.addEventListener('click', () => moveButtonAway(maybeBtn3));
+    noBtn3.addEventListener('mouseenter', () => moveButtonAway(noBtn3));
+    noBtn3.addEventListener('click', () => moveButtonAway(noBtn3));
+
+    yesBtn3.addEventListener('click', () => {
+      // Show transition first
+      nextPage('transition2');
+      
+      // After 1.5 seconds, go to page 4
+      setTimeout(() => {
+        nextPage(4);
+      }, 1500);
+      
+      // Reset buttons
+      maybeBtn3.style.position = 'relative';
+      maybeBtn3.style.left = 'auto';
+      maybeBtn3.style.top = 'auto';
+      noBtn3.style.position = 'relative';
+      noBtn3.style.left = 'auto';
+      noBtn3.style.top = 'auto';
+    });
+
+    // Final celebration
+    function spawnEmoji(emoji) {
+      const el = document.createElement("div");
+      el.className = "float-emoji";
+      el.innerText = emoji;
+      document.body.appendChild(el);
+      el.style.left = Math.random() * window.innerWidth + "px";
+      el.style.top = window.innerHeight - 30 + "px";
+      setTimeout(() => el.remove(), 4000);
+    }
+
+    function launchCelebration() {
+      const emojis = ["💖", "❤️", "💘", "🎉", "🥳", "✨", "💕", "💓", "🌟", "💝", "🎊"];
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+          spawnEmoji(randomEmoji);
+        }, i * 80);
+      }
+    }
+
+    function showFinal() {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('finalPage').classList.add('active');
+      launchCelebration();
+      
+      // Extra hearts
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createFloatingHeart, i * 100);
+      }
+    }
+  </script>
+
+</body>
+</html>
